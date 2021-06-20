@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Stack(
             children: <Widget>[
-              Image(image: AssetImage('assets/logo_bik.png')),
+              Image(image: AssetImage('assets/japan.png')),
               Center(
                 child: ColorizeAnimatedTextKit(
                   onTap: null,
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           Image(
-            image: AssetImage('assets/it03.png'),
+            image: AssetImage('assets/japan.png'),
             fit: BoxFit.cover,
           ),
 
@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
             width: double.infinity,
             height: 400,
             child: Image(
-              image: AssetImage('assets/it01.png'),
+              image: AssetImage('assets/japan.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
             width: double.infinity,
             height: 400,
             child: Image(
-              image: AssetImage('assets/it02.png'),
+              image: AssetImage('assets/japan.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -252,7 +252,7 @@ class _HomePageState extends State<HomePage> {
 
           //会社概要
           Image(
-            image: AssetImage('assets/it04.png'),
+            image: AssetImage('assets/japan.png'),
             fit: BoxFit.cover,
           ),
           Container(
@@ -327,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: Column(
                     children: [
-                      Image(image: AssetImage('assets/face.png')),
+                      Image(image: AssetImage('assets/japan.png')),
                       TextButton(
                           onPressed: () {
                             // Navigator.push(context,
