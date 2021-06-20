@@ -27,9 +27,20 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDsvivP3H_MRUSPc4uzCUJlGbMgOa89lfE",
+      authDomain: "web-genyosysteme.firebaseapp.com",
+      projectId: "web-genyosysteme",
+      storageBucket: "web-genyosysteme.appspot.com",
+      messagingSenderId: "231010350842",
+      appId: "1:231010350842:web:72dd702dcbbffa8e2c3b43"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
