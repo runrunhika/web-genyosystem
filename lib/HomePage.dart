@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:translator/translator.dart';
 
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -75,35 +74,46 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(25),
-                hintText: '単語・文を入力',
-                hintStyle: TextStyle(color: Colors.white),
-                border: InputBorder.none,
-                filled: true,
-                fillColor: Color(0xff263238),
-                suffixIcon: _loading
-                    ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(25),
+                  labelText: '検索',
+                  labelStyle: TextStyle(color: Colors.white),
+                  hintText: 'Hello or こんにちは',
+                  hintStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  filled: true,
+                  fillColor: Color(0xff263238),
+                  suffixIcon: _loading
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.white,
+                          ),
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(60)),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.translate,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              if (inputText.isNotEmpty) translate();
+                            },
+                          ),
                         ),
-                      )
-                    : IconButton(
-                        icon: Icon(
-                          Icons.translate,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          if (inputText.isNotEmpty) translate();
-                        },
-                      ),
+                ),
+                onChanged: (input) {
+                  inputText = input;
+                },
               ),
-              onChanged: (input) {
-                inputText = input;
-              },
             ),
             Expanded(
               child: ListView(
