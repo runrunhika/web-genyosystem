@@ -9,7 +9,12 @@ class _MobilPPScreenState extends State<MobilPPScreen> {
   @override
   Widget build(BuildContext context) {
     final style = TextStyle(decoration: TextDecoration.underline, fontSize: 20);
-    return ListView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('お問い合わせサイト'),
+        centerTitle: true,
+      ),
+      body: ListView(
         children: <Widget>[
           //プライバシーポリシーについて
           Container(
@@ -241,6 +246,7 @@ class _MobilPPScreenState extends State<MobilPPScreen> {
             ),
           ),
         ],
+      ),
     );
   }
 }
