@@ -11,7 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.0.2
+  sprung: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -33,9 +36,9 @@ flutter:
     - assets/
   #   - images/a_dot_ham.jpeg
 
-  fonts:
-    - family: DancingScript
-      fonts:
-        - asset: assets/DancingScript-VariableFont_wght.ttf
+  # fonts:
+  #   - family: DancingScript
+  #     fonts:
+  #       - asset: assets/DancingScript-VariableFont_wght.ttf
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:web_genyosystem/pages/pp/mobile_pp.dart';
-import 'package:web_genyosystem/pages/pp/web_pp.dart';
+import 'package:web_genyosystem/pages/M/mobile_pp.dart';
+import 'package:web_genyosystem/pages/W/web_pp.dart';
 
 class PPPage extends StatelessWidget {
   const PPPage({Key? key}) : super(key: key);

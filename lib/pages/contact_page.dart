@@ -1,32 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:web_genyosystem/pages/pp/pp_page.dart';
-import 'package:web_genyosystem/pages/pp/web_pp.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ContactPage extends StatelessWidget {
+  const ContactPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal[100],
       appBar: AppBar(
-        title: Text('お問い合わせサイト'),
-        centerTitle: true,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Divider(),
-            ListTile(
-              title: Text("PrivacyPolicy"),
-              trailing: Icon(Icons.privacy_tip),
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (ctx) => PPPage()));
-              },
-            ),
-          ],
-        ),
-      ),
+          title: Text("お問い合わせ"),
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.orangeAccent, Colors.lightBlueAccent],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft)),
+          )),
       body: ListView(
         children: [
           //contact
