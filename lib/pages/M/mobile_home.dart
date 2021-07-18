@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:marquee/marquee.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:web_genyosystem/utils/utils.dart';
@@ -80,19 +81,29 @@ class _MobilAnimationState extends State<MobilAnimation> {
 
           //Service
           Container(
-            width: double.infinity,
-            height: 40,
-            decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.8),
-                gradient: LinearGradient(
-                    colors: [Colors.deepPurple, Colors.greenAccent])),
-            child: Center(
-              child: Text(
-                "Service",
-                style: TextStyle(fontSize: 27, color: Colors.white),
-              ),
-            ),
-          ),
+              width: double.infinity,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(.8),
+                  gradient: LinearGradient(
+                      colors: [Colors.deepPurple, Colors.greenAccent])),
+              child: Marquee(
+                text: 'Other services',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: Colors.white),
+                scrollAxis: Axis.horizontal,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                blankSpace: 20.0,
+                velocity: 100.0,
+                pauseAfterRound: Duration(seconds: 1),
+                startPadding: 10.0,
+                accelerationDuration: Duration(seconds: 1),
+                accelerationCurve: Curves.linear,
+                decelerationDuration: Duration(milliseconds: 500),
+                decelerationCurve: Curves.easeOut,
+              )),
 
           //クッキングアプリ
           Padding(
@@ -301,7 +312,6 @@ class _MobilAnimationState extends State<MobilAnimation> {
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -318,5 +328,4 @@ class _MobilAnimationState extends State<MobilAnimation> {
   void _translateAppleAppURL() async => await canLaunch(translateAppleApp)
       ? await launch(translateAppleApp)
       : throw 'Could not launch $translateAppleApp';
-
 }
