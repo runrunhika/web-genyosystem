@@ -104,8 +104,47 @@ class _MobilAnimationState extends State<MobilAnimation> {
                 decelerationDuration: Duration(milliseconds: 500),
                 decelerationCurve: Curves.easeOut,
               )),
+          //クッキングアプリ ios
+          Padding(
+            padding: const EdgeInsets.only(right: 40, left: 40, top: 20),
+            child: OnHoverWidget(
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    side: BorderSide(color: Colors.pink, width: 4),
+                    shape: StadiumBorder(),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(40.0),
+                      child: Image.asset(
+                        'assets/logo.jpeg',
+                        fit: BoxFit.cover,
+                        width: 70,
+                        height: 70,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    RichText(
+                        text: TextSpan(
+                      text: "クッキングアプリ \n(iPhone用)",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 20,
+                          decoration: TextDecoration.underline),
+                    )),
+                  ],
+                ),
+                onPressed: _cookAppleAppURL,
+              ),
+            ),
+          ),
 
-          //クッキングアプリ
+          //クッキングアプリ and
           Padding(
             padding: const EdgeInsets.only(right: 40, left: 40, top: 20),
             child: OnHoverWidget(
@@ -320,6 +359,10 @@ class _MobilAnimationState extends State<MobilAnimation> {
   void _cookAppURL() async => await canLaunch(cookApp)
       ? await launch(cookApp)
       : throw 'Could not launch $cookApp';
+
+  void _cookAppleAppURL() async => await canLaunch(cookAppleApp)
+      ? await launch(cookAppleApp)
+      : throw 'Could not launch $cookAppleApp';
 
   void _translateAppURL() async => await canLaunch(translateApp)
       ? await launch(translateApp)

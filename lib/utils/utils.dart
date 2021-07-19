@@ -4,6 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 const cookApp =
     'https://play.google.com/store/apps/details?id=com.genyosystem.cooking';
 
+//cook app (ios)
+const cookAppleApp = 'https://apps.apple.com/us/app/ご飯の時間/id1574334869';
+
 //translate & voice app (android)
 const translateApp =
     'https://play.google.com/store/apps/details?id=com.genyo.translate_voice_app';
