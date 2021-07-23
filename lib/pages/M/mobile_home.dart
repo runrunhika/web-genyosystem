@@ -1,7 +1,9 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:marquee/marquee.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web_genyosystem/data/data.dart';
 import 'package:web_genyosystem/utils/utils.dart';
 import 'package:web_genyosystem/widget/on_hover_widget.dart';
 
@@ -185,47 +187,27 @@ class _MobilAnimationState extends State<MobilAnimation> {
           ),
 
           //画像
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Container(
+//画像
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Container(
+              height: 900,
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'assets/com.jpg',
-                      width: 300,
-                      height: 500,
-                      fit: BoxFit.cover,
+                      cookImage[index]['image'],
+                      fit: BoxFit.fill,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Container(
-                    child: Image.asset(
-                      'assets/c1-2.png',
-                      width: 300,
-                      height: 500,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Container(
-                    child: Image.asset(
-                      'assets/c1-3.png',
-                      width: 300,
-                      height: 500,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                },
+                itemCount: cookImage.length,
+                pagination: SwiperPagination(),
+                control: SwiperControl(size: 50, color: Colors.red),
+              ),
             ),
           ),
-
           Divider(
             color: Colors.purple,
           ),
@@ -311,44 +293,25 @@ class _MobilAnimationState extends State<MobilAnimation> {
           ),
 
           //画像
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Container(
+//画像
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Container(
+              height: 900,
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'assets/1.png',
-                      width: 300,
-                      height: 500,
-                      fit: BoxFit.cover,
+                      traImage[index]['image'],
+                      fit: BoxFit.fill,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Container(
-                    child: Image.asset(
-                      'assets/2.png',
-                      width: 300,
-                      height: 500,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Container(
-                    child: Image.asset(
-                      'assets/3.png',
-                      width: 300,
-                      height: 500,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                },
+                itemCount: traImage.length,
+                pagination: SwiperPagination(),
+                control: SwiperControl(size: 50, color: Colors.red),
+              ),
             ),
           ),
         ],
