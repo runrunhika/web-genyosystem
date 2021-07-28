@@ -10,8 +10,8 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
-  final nameCont = TextEditingController();
-  final emailCont = TextEditingController();
+  late final nameCont = TextEditingController();
+  late final emailCont = TextEditingController();
   final subjectCont = TextEditingController();
   final messageCont = TextEditingController();
 
@@ -63,7 +63,8 @@ class _ContactPageState extends State<ContactPage> {
                   controller: nameCont,
                   icon: Icon(Icons.person),
                   hint: '山田太郎　または　会社名'),
-              buildTextField(
+
+              emailTextField(
                   title: 'メールアドレス',
                   controller: emailCont,
                   icon: Icon(Icons.mail),
@@ -80,7 +81,8 @@ class _ContactPageState extends State<ContactPage> {
                   maxLines: 5,
                   hint: ''),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                   child: GestureDetector(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
@@ -197,6 +199,51 @@ class _ContactPageState extends State<ContactPage> {
                   fontWeight: FontWeight.bold,
                   fontSize: 14),
             ),
+          ],
+        ),
+      );
+
+  Widget emailTextField(
+          {required String title,
+          required String hint,
+          required Icon icon,
+          required TextEditingController controller,
+          int maxLines = 1}) =>
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RichText(
+                text: TextSpan(children: [
+              TextSpan(text: "必須   ", style: TextStyle(color: Colors.red)),
+              TextSpan(text: title, style: TextStyle(color: Colors.black)),
+            ])),
+            TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.mail),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  hintText: 'example@mail.com',
+                  hintStyle: TextStyle(color: Colors.grey)),
+              validator: (value) {
+                final pattern =
+                    r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)';
+                final regExp = RegExp(pattern);
+
+                if (value!.isEmpty) {
+                  return '入力してください';
+                } else if (!regExp.hasMatch(value)) {
+                  return '無効なメールアドレスです';
+                } else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.emailAddress,
+            )
           ],
         ),
       );
