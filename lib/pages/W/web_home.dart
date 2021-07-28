@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/instance_manager.dart';
 import 'package:marquee/marquee.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:web_genyosystem/pages/W/web_pp.dart';
@@ -37,8 +39,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
               title: Text("Contact"),
               trailing: Icon(Icons.meeting_room),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => ContactPage()));
+                Get.to(ContactPage());
               },
             ),
             Divider(),
@@ -46,8 +47,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
               title: Text("PrivacyPolicy"),
               trailing: Icon(Icons.privacy_tip),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => WebPPScreen()));
+                Get.to(WebPPScreen());
               },
             ),
           ],

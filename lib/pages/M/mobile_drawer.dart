@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../contact_page.dart';
 import 'mobile_pp.dart';
@@ -37,8 +38,7 @@ class _MobilDrawerState extends State<MobilDrawer> {
             ),
             leading: Icon(Icons.meeting_room, color: Colors.white),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (ctx) => ContactPage()));
+              Get.to(ContactPage());
             },
           ),
           Divider(color: Colors.white),
@@ -49,8 +49,7 @@ class _MobilDrawerState extends State<MobilDrawer> {
             ),
             leading: Icon(Icons.privacy_tip, color: Colors.white),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (ctx) => MobilPPScreen()));
+              Get.to(MobilPPScreen());
             },
           ),
         ],

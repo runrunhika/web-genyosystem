@@ -19,6 +19,9 @@ dependencies:
   sprung: ^3.0.0
   card_swiper: ^1.0.2
 
+  get: ^4.3.0
+  http: ^0.13.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
