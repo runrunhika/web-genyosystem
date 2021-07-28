@@ -173,7 +173,7 @@ class _ContactPageState extends State<ContactPage> {
             RichText(
                 text: TextSpan(children: [
               TextSpan(text: "必須   ", style: TextStyle(color: Colors.red)),
-              TextSpan(text: title),
+              TextSpan(text: title, style: TextStyle(color: Colors.black)),
             ])),
             TextFormField(
               validator: (value) {
