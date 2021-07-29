@@ -28,105 +28,108 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.teal[100],
-        appBar: AppBar(
-            title: Text("元昜システム株式会社"),
-            centerTitle: true,
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.orangeAccent, Colors.lightBlueAccent],
-                      begin: Alignment.bottomRight,
-                      end: Alignment.topLeft)),
-            )),
-        body: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              //contact
-              Container(
-                  width: double.infinity,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(.8),
-                      gradient: LinearGradient(
-                          colors: [Colors.deepPurple, Colors.greenAccent])),
-                  child: Center(
-                    child: Text(
-                      "お問い合わせ",
-                      style: TextStyle(fontSize: 27, color: Colors.white),
-                    ),
-                  )),
-              // Mail
-              buildTextField(
-                  title: 'お名前',
-                  controller: nameCont,
-                  icon: Icon(Icons.person),
-                  hint: '山田太郎　または　会社名'),
-
-              emailTextField(
-                  title: 'メールアドレス',
-                  controller: emailCont,
-                  icon: Icon(Icons.mail),
-                  hint: 'example@mail.com'),
-              buildTextField(
-                  title: '件名',
-                  controller: subjectCont,
-                  icon: Icon(Icons.subject),
-                  hint: '〇〇の依頼'),
-              contentTextField(
-                  title: '内容',
-                  controller: messageCont,
-                  icon: Icon(Icons.edit),
-                  hint: ''),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          sendEmail(
-                              name: nameCont.text,
-                              email: emailCont.text,
-                              subject: subjectCont.text,
-                              message: messageCont.text);
-                        });
-                        _showSnackBar();
-                      }
-                    },
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 200),
-                      height: 48,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          gradient: LinearGradient(
-                              colors: [Colors.lightBlue, Colors.white]),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.blue.withOpacity(.6),
-                                spreadRadius: 1,
-                                blurRadius: 16,
-                                offset: Offset(8, 8))
-                          ]),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "送信する",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          backgroundColor: Colors.teal[100],
+          appBar: AppBar(
+              title: Text("元昜システム株式会社"),
+              centerTitle: true,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Colors.orangeAccent, Colors.lightBlueAccent],
+                        begin: Alignment.bottomRight,
+                        end: Alignment.topLeft)),
+              )),
+          body: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                //contact
+                Container(
+                    width: double.infinity,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(.8),
+                        gradient: LinearGradient(
+                            colors: [Colors.deepPurple, Colors.greenAccent])),
+                    child: Center(
+                      child: Text(
+                        "お問い合わせ",
+                        style: TextStyle(fontSize: 27, color: Colors.white),
                       ),
-                    ),
-                  )),
-            ],
+                    )),
+                // Mail
+                buildTextField(
+                    title: 'お名前',
+                    controller: nameCont,
+                    icon: Icon(Icons.person),
+                    hint: '山田太郎　または　会社名'),
+
+                emailTextField(
+                    title: 'メールアドレス',
+                    controller: emailCont,
+                    icon: Icon(Icons.mail),
+                    hint: 'example@mail.com'),
+                buildTextField(
+                    title: '件名',
+                    controller: subjectCont,
+                    icon: Icon(Icons.subject),
+                    hint: '〇〇の依頼'),
+                contentTextField(
+                    title: '内容',
+                    controller: messageCont,
+                    icon: Icon(Icons.edit),
+                    hint: ''),
+                Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 20),
+                    child: GestureDetector(
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            sendEmail(
+                                name: nameCont.text,
+                                email: emailCont.text,
+                                subject: subjectCont.text,
+                                message: messageCont.text);
+                          });
+                          _showSnackBar();
+                        }
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 200),
+                        height: 48,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            gradient: LinearGradient(
+                                colors: [Colors.lightBlue, Colors.white]),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.blue.withOpacity(.6),
+                                  spreadRadius: 1,
+                                  blurRadius: 16,
+                                  offset: Offset(8, 8))
+                            ]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "送信する",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+              ],
+            ),
           ),
         ),
       );
