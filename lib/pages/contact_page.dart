@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -74,11 +75,10 @@ class _ContactPageState extends State<ContactPage> {
                   controller: subjectCont,
                   icon: Icon(Icons.subject),
                   hint: '〇〇の依頼'),
-              buildTextField(
+              contentTextField(
                   title: '内容',
                   controller: messageCont,
                   icon: Icon(Icons.edit),
-                  maxLines: 5,
                   hint: ''),
               Padding(
                   padding:
@@ -175,7 +175,12 @@ class _ContactPageState extends State<ContactPage> {
             RichText(
                 text: TextSpan(children: [
               TextSpan(text: "必須   ", style: TextStyle(color: Colors.red)),
-              TextSpan(text: title, style: TextStyle(color: Colors.black)),
+              TextSpan(
+                  text: title,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18)),
             ])),
             TextFormField(
               validator: (value) {
@@ -217,7 +222,12 @@ class _ContactPageState extends State<ContactPage> {
             RichText(
                 text: TextSpan(children: [
               TextSpan(text: "必須   ", style: TextStyle(color: Colors.red)),
-              TextSpan(text: title, style: TextStyle(color: Colors.black)),
+              TextSpan(
+                  text: title,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18)),
             ])),
             TextFormField(
               controller: controller,
@@ -243,6 +253,47 @@ class _ContactPageState extends State<ContactPage> {
                 }
               },
               keyboardType: TextInputType.emailAddress,
+            )
+          ],
+        ),
+      );
+
+  Widget contentTextField(
+          {required String title,
+          required String hint,
+          required Icon icon,
+          required TextEditingController controller,
+          int maxLines = 5}) =>
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RichText(
+                text: TextSpan(children: [
+              TextSpan(text: "必須   ", style: TextStyle(color: Colors.red)),
+              TextSpan(
+                  text: title,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18)),
+            ])),
+            TextFormField(
+              controller: controller,
+              maxLines: maxLines,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return '入力してください';
+                }
+              },
+              decoration: InputDecoration(
+                prefixIcon: icon,
+                filled: true,
+                fillColor: Colors.white,
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              ),
             )
           ],
         ),
