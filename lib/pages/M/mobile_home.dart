@@ -293,7 +293,6 @@ class _MobilAnimationState extends State<MobilAnimation> {
           ),
 
           //画像
-//画像
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Container(

@@ -1,9 +1,11 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:marquee/marquee.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web_genyosystem/data/data.dart';
 import 'package:web_genyosystem/pages/W/web_pp.dart';
 import 'package:web_genyosystem/utils/utils.dart';
 import 'package:web_genyosystem/widget/on_hover_image.dart';
@@ -80,7 +82,6 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
                 decelerationDuration: Duration(milliseconds: 500),
                 decelerationCurve: Curves.easeOut,
               )),
-
           //クッキングアプリ ios
           Padding(
             padding: const EdgeInsets.only(right: 40, left: 40, top: 20),
@@ -108,7 +109,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
                     ),
                     RichText(
                         text: TextSpan(
-                      text: "クッキングアプリ (iPhone用)",
+                      text: "クッキングアプリ \n(iPhone用)",
                       style: TextStyle(
                           color: Colors.blue,
                           fontSize: 20,
@@ -148,7 +149,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
                     ),
                     RichText(
                         text: TextSpan(
-                      text: "クッキングアプリ (Android版)",
+                      text: "クッキングアプリ \n(Android版)",
                       style: TextStyle(
                           color: Colors.blue,
                           fontSize: 20,
@@ -162,98 +163,32 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
           ),
 
           //画像
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: OnHoverImageWidget(
-                    child: Container(
-                      child: Image.asset(
-                        'assets/com.jpg',
-                        width: 300,
-                        height: 500,
-                        fit: BoxFit.cover,
-                      ),
+//画像
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Container(
+              height: 900,
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      cookImage[index]['image'],
+                      fit: BoxFit.fill,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: OnHoverImageWidget(
-                    child: Container(
-                      child: Image.asset(
-                        'assets/c1-2.png',
-                        width: 300,
-                        height: 500,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: OnHoverImageWidget(
-                    child: Container(
-                      child: Image.asset(
-                        'assets/c1-3.png',
-                        width: 300,
-                        height: 500,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                },
+                itemCount: cookImage.length,
+                pagination: SwiperPagination(),
+                control: SwiperControl(size: 50, color: Colors.red),
+              ),
             ),
           ),
-
           Divider(
             color: Colors.purple,
           ),
 
           //翻訳アプリ (ios)
-          Padding(
-            padding: const EdgeInsets.only(right: 40, left: 40, top: 20),
-            child: OnHoverWidget(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    side: BorderSide(color: Colors.purple, width: 4),
-                    shape: StadiumBorder(),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(40.0),
-                      child: Image.asset(
-                        'assets/newicon.png',
-                        fit: BoxFit.cover,
-                        width: 70,
-                        height: 70,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    RichText(
-                        text: TextSpan(
-                      text: "翻訳アプリ (iPhone版)",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 20,
-                          decoration: TextDecoration.underline),
-                    )),
-                  ],
-                ),
-                onPressed: _translateAppleAppURL,
-              ),
-            ),
-          ),
-
-          //翻訳アプリ (android)
           Padding(
             padding: const EdgeInsets.only(right: 40, left: 40, top: 20),
             child: OnHoverWidget(
@@ -280,7 +215,47 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
                     ),
                     RichText(
                         text: TextSpan(
-                      text: "翻訳アプリ (Android版)",
+                      text: "翻訳アプリ \n(iPhone版)",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 20,
+                          decoration: TextDecoration.underline),
+                    )),
+                  ],
+                ),
+                onPressed: _translateAppleAppURL,
+              ),
+            ),
+          ),
+
+          //翻訳アプリ (android)
+          Padding(
+            padding: const EdgeInsets.only(right: 40, left: 40, top: 20),
+            child: OnHoverWidget(
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    side: BorderSide(color: Colors.purple, width: 4),
+                    shape: StadiumBorder(),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(40.0),
+                      child: Image.asset(
+                        'assets/newicon.png',
+                        fit: BoxFit.cover,
+                        width: 70,
+                        height: 70,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    RichText(
+                        text: TextSpan(
+                      text: "翻訳アプリ \n(Android版)",
                       style: TextStyle(
                           color: Colors.blue,
                           fontSize: 20,
@@ -294,50 +269,24 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
           ),
 
           //画像
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: OnHoverImageWidget(
-                    child: Container(
-                      child: Image.asset(
-                        'assets/1.png',
-                        width: 300,
-                        height: 500,
-                        fit: BoxFit.cover,
-                      ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Container(
+              height: 900,
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      traImage[index]['image'],
+                      fit: BoxFit.fill,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: OnHoverImageWidget(
-                    child: Container(
-                      child: Image.asset(
-                        'assets/2.png',
-                        width: 300,
-                        height: 500,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: OnHoverImageWidget(
-                    child: Container(
-                      child: Image.asset(
-                        'assets/3.png',
-                        width: 300,
-                        height: 500,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                },
+                itemCount: traImage.length,
+                pagination: SwiperPagination(),
+                control: SwiperControl(size: 50, color: Colors.red),
+              ),
             ),
           ),
 
