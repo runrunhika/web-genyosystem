@@ -7,7 +7,6 @@ import 'package:web_genyosystem/pages/M/mobile_home.dart';
 import 'package:web_genyosystem/pages/W/web_home.dart';
 
 import 'pages/M/mobile_pp.dart';
-import 'pages/W/web_pp.dart';
 import 'pages/contact_page.dart';
 
 void main() async {
@@ -25,7 +24,6 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/main_page', page: () => MainPage()),
         GetPage(name: '/web_home', page: () => WebHomeScreen()),
-        GetPage(name: '/web_pp', page: () => WebPPScreen()),
         GetPage(name: '/mo_home', page: () => MobilAnimation()),
         GetPage(name: '/mo_dra', page: () => MobilDrawer()),
         GetPage(name: '/mo_pp', page: () => MobilPPScreen()),

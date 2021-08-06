@@ -1,5 +1,12 @@
 import 'package:url_launcher/url_launcher.dart';
 
+//translate & voice web
+const translateWeb = 'https://translate-voice-app.web.app/#/';
+
+//掲示板　app
+const chatApp =
+    'https://play.google.com/store/apps/details?id=com.genyosystem.right';
+
 //cook app (android)
 const cookApp =
     'https://play.google.com/store/apps/details?id=com.genyosystem.cooking';
