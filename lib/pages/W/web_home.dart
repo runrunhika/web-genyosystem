@@ -14,6 +14,7 @@ import 'package:web_genyosystem/utils/utils.dart';
 import 'package:web_genyosystem/widget/on_hover_image.dart';
 import 'package:web_genyosystem/widget/on_hover_widget.dart';
 import 'package:http/http.dart' as http;
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../contact_page.dart';
 
@@ -83,6 +84,24 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
   final _formKey = GlobalKey<FormState>();
   final namefocus = FocusNode();
   final agefocus = FocusNode();
+
+  YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: 'pGghKmmxaAw',
+    params: YoutubePlayerParams(
+      startAt: Duration(seconds: 0),
+      showControls: true,
+      showFullscreenButton: true,
+    ),
+  );
+
+  YoutubePlayerController _controller2 = YoutubePlayerController(
+    initialVideoId: 'p2EowM8yjKg',
+    params: YoutubePlayerParams(
+      startAt: Duration(seconds: 0),
+      showControls: true,
+      showFullscreenButton: true,
+    ),
+  );
 
   _showSnackBar() {
     Get.snackbar('送信完了', '返信お待ちください',
@@ -457,6 +476,57 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
               ),
 
               buildIndicator3(),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 50),
+                child: Divider(
+                  color: Colors.purple,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Container(
+                  decoration: BoxDecoration(color: Colors.grey.withOpacity(.3)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text("実績", style: (TextStyle(fontSize: 35))),
+                  ),
+                ),
+              ),
+              Text('''Youtube広告をブロックするシステム''',
+                  style: (TextStyle(fontSize: 20))),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Container(
+                  height: 350,
+                  child: YoutubePlayerControllerProvider(
+                    controller: _controller,
+                    child: YoutubePlayerIFrame(
+                      aspectRatio: 16 / 9,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(
+                height: 40,
+              ),
+
+              Text('''3DFPSゲーム''', style: (TextStyle(fontSize: 20))),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Container(
+                  height: 350,
+                  child: YoutubePlayerControllerProvider(
+                    controller: _controller2,
+                    child: YoutubePlayerIFrame(
+                      aspectRatio: 16 / 9,
+                    ),
+                  ),
+                ),
+              ),
 
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 50),
