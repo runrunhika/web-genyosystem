@@ -1,51 +1,85 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:web_genyosystem/pages/M/mobile_drawer.dart';
-import 'package:web_genyosystem/pages/M/mobile_home.dart';
-import 'package:web_genyosystem/pages/W/web_home.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
-import 'pages/M/mobile_pp.dart';
-import 'pages/contact_page.dart';
+import 'pages/aboutUsPage.dart';
+import 'pages/helpPage.dart';
+import 'pages/menuPage.dart';
+import 'pages/notificationPage.dart';
+import 'pages/paymentPage.dart';
+import 'pages/promoPage.dart';
+import 'pages/rateUsPage.dart';
+import 'widget/menuItem.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+//flutter create .
+//flutter build web
+
+
+void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'サポートページ',
-      home: MainPage(),
-      getPages: [
-        GetPage(name: '/main_page', page: () => MainPage()),
-        GetPage(name: '/web_home', page: () => WebHomeScreen()),
-        GetPage(name: '/mo_home', page: () => MobilAnimation()),
-        GetPage(name: '/mo_dra', page: () => MobilDrawer()),
-        GetPage(name: '/mo_pp', page: () => MobilPPScreen()),
-        GetPage(name: '/contact', page: () => ContactPage()),
-      ],
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
     );
   }
 }
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  MenuItem currentItem = MenuItems.payment;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth > 700) {
-        return WebHomeScreen();
-      } else {
-        return Stack(
-          children: [MobilDrawer(), MobilAnimation()],
-        );
-      }
-    }));
+    return ZoomDrawer(
+      style: DrawerStyle.Style1,
+      borderRadius: 40,
+      angle: -10,
+      slideWidth: MediaQuery.of(context).size.width * 0.5,
+      //my favorite
+      showShadow: true,
+      backgroundColor: Colors.orange,
+      mainScreen: getScreen(),
+      menuScreen: Builder(
+        builder: (context) => MenuPage(
+            currentItem: currentItem,
+            onSelectedItem: (item) {
+              setState(() {
+                currentItem = item;
+
+                ZoomDrawer.of(context)!.close();
+              });
+            }),
+      ),
+    );
+  }
+
+  Widget getScreen() {
+    switch (currentItem) {
+      case MenuItems.payment:
+        return PaymentPage();
+      case MenuItems.promos:
+        return PromoPage();
+      case MenuItems.notifications:
+        return NotificationPage();
+      case MenuItems.help:
+        return HelpPage();
+      case MenuItems.aboutUs:
+        return AboutUsPage();
+      default:
+        return RateUsPage();
+    }
   }
 }
